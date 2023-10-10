@@ -195,7 +195,7 @@ services:
         aliases:
           - edx.devstack.mongo
     ports:
-     - "27017:27017"
+      - "27017:27017"
     volumes:
       - mongo_data:/data/db
       - mongo_config_data:/data/configdb
@@ -419,6 +419,8 @@ services:
           - edx.devstack.forum
     ports:
       - "44567:4567"
+    volumes:
+      - ${PWD}/configuration_files/forum.yml:/edx/etc/forum.yml
 
   lms:
     command: bash -c 'source /edx/app/edxapp/edxapp_env && while true; do python /edx/app/edxapp/edx-platform/manage.py lms runserver 0.0.0.0:18000 --settings devstack_docker; sleep 2; done'
